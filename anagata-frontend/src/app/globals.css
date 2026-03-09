@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+  --coffee-dark: #1a0e00;
+  --coffee-brown: #4a2c0a;
+  --coffee-medium: #7c4a1e;
+  --coffee-golden: #c8882b;
+  --coffee-amber: #e6a336;
+  --coffee-cream: #f5ede0;
+  --coffee-beige: #faf4ec;
+  --coffee-light: #fff8f0;
+  --text-dark: #1a0e00;
+  --text-muted: #6b5b4e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--coffee-beige);
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--coffee-beige);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--coffee-medium);
+  border-radius: 4px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.animate-fade-up {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.animate-fade-left {
+  animation: fadeInLeft 0.8s ease forwards;
+}
+
+.animate-fade-right {
+  animation: fadeInRight 0.8s ease forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-delay-100 { animation-delay: 0.1s; }
+.animate-delay-200 { animation-delay: 0.2s; }
+.animate-delay-300 { animation-delay: 0.3s; }
+.animate-delay-400 { animation-delay: 0.4s; }
+.animate-delay-500 { animation-delay: 0.5s; }
+
+/* Typography */
+.font-display {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-script {
+  font-family: 'Dancing Script', cursive;
+}
+
+/* Buttons */
+.btn-primary {
+  background: linear-gradient(135deg, var(--coffee-golden), var(--coffee-amber));
+  color: white;
+  padding: 14px 36px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(200, 136, 43, 0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(200, 136, 43, 0.5);
+  background: linear-gradient(135deg, var(--coffee-amber), var(--coffee-golden));
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--coffee-golden);
+  padding: 13px 34px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  border: 2px solid var(--coffee-golden);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  background: var(--coffee-golden);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(200, 136, 43, 0.35);
+}
+
+/* Section styles */
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--coffee-dark);
+  line-height: 1.2;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 540px;
+}
+
+.section-tag {
+  font-family: 'Dancing Script', cursive;
+  color: var(--coffee-golden);
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+/* Divider */
+.coffee-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.coffee-divider::before,
+.coffee-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--coffee-golden);
+  opacity: 0.4;
+}
+
+/* Card */
+.card-coffee {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(74, 44, 10, 0.08);
+  transition: all 0.35s ease;
+}
+
+.card-coffee:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(74, 44, 10, 0.16);
+}
+
+/* Bean pattern background */
+.bg-bean-pattern {
+  background-image: url('/coffee_bean_pattern.png');
+  background-repeat: repeat;
+  background-size: 300px;
+  background-blend-mode: multiply;
+}
