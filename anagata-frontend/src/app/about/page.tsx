@@ -1,454 +1,298 @@
 "use client";
 
 import Image from "next/image";
-
-const values = [
-  {
-    icon: "🌱",
-    title: "Sustainably Sourced",
-    desc: "We partner with ethical farmers across Indonesia, Ethiopia, and Colombia who share our commitment to sustainable and fair-trade practices.",
-  },
-  {
-    icon: "🔥",
-    title: "Artisan Roasting",
-    desc: "Our in-house roaster carefully profiles each batch to unlock the unique flavors and aromas of every single-origin bean.",
-  },
-  {
-    icon: "❤️",
-    title: "Made with Love",
-    desc: "Every cup is crafted with intention. Our baristas train extensively to ensure consistency and excellence in every pour.",
-  },
-  {
-    icon: "🏡",
-    title: "A Home Away from Home",
-    desc: "We design our spaces to be warm, welcoming, and inspiring — so you can relax, work, or connect over great coffee.",
-  },
-];
-
-const team = [
-  { name: "Rina Kusuma", role: "Founder & Head Barista", emoji: "👩‍🍳" },
-  { name: "Arif Prabowo", role: "Head Roaster", emoji: "👨‍🏭" },
-  { name: "Maya Sari", role: "Café Manager", emoji: "👩‍💼" },
-  { name: "Dani Wijaya", role: "Pastry Chef", emoji: "👨‍🍳" },
-];
+import Link from "next/link";
 
 export default function AboutPage() {
   return (
-    <>
-      {/* Hero */}
+    <div style={{ background: "#faf7f2", minHeight: "100vh" }}>
+      {/* ===== Hero Section ===== */}
       <section
         style={{
           position: "relative",
-          height: "400px",
+          height: "70vh",
+          minHeight: "550px",
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
           overflow: "hidden",
           background: "#1a0e00",
         }}
       >
         <Image
-          src="/coffee_about.png"
-          alt="Anagata Coffee interior"
+          src="/bg.jpg"
+          alt="Anagata Coffee"
           fill
-          style={{ objectFit: "cover", opacity: 0.3 }}
+          style={{ objectFit: "cover", objectPosition: "top", opacity: 0.6 }}
           priority
+          quality={100}
         />
         <div
           style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(to bottom, rgba(26,14,0,0.3), rgba(26,14,0,0.85))",
+            background: "linear-gradient(to right, rgba(26,14,0,0.4), rgba(26,14,0,0.85))",
+            zIndex: 1,
           }}
         />
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage: "url('/coffee_bean_pattern.png')",
-            backgroundSize: "260px",
-            opacity: 0.05,
-          }}
-        />
-        <div style={{ position: "relative", textAlign: "center" }}>
-          <span
-            style={{
-              fontFamily: "'Dancing Script', cursive",
-              fontSize: "1.4rem",
-              color: "#e6a336",
-              fontWeight: "600",
-              display: "block",
-              marginBottom: "8px",
-            }}
-          >
-            Get to know us
-          </span>
-          <h1
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(2.5rem, 5vw, 3.8rem)",
-              fontWeight: "700",
-              color: "white",
-            }}
-          >
-            About Us
-          </h1>
-        </div>
-      </section>
 
-      {/* Story Section */}
-      <section
-        style={{
-          padding: "100px 24px",
-          background: "var(--coffee-beige)",
-          position: "relative",
-        }}
-      >
         <div
+          className="hero-text-container"
           style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage: "url('/coffee_bean_pattern.png')",
-            backgroundSize: "280px",
-            opacity: 0.03,
-          }}
-        />
-        <div
-          style={{
+            position: "relative",
+            zIndex: 2,
             maxWidth: "1200px",
             margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "80px",
-            alignItems: "center",
-            position: "relative",
+            width: "100%",
+            padding: "0 24px",
+            display: "flex",
+            justifyContent: "flex-end"
           }}
-          className="story-grid"
         >
-          <div>
-            <span
-              style={{
-                fontFamily: "'Dancing Script', cursive",
-                fontSize: "1.4rem",
-                color: "#e6a336",
-                fontWeight: "600",
-                display: "block",
-                marginBottom: "8px",
-              }}
-            >
-              Our Journey
-            </span>
-            <h2
+          <div className="hero-text-inner" style={{ maxWidth: "550px", textAlign: "left" }}>
+
+
+            <h1
               style={{
                 fontFamily: "'Playfair Display', serif",
-                fontSize: "clamp(1.8rem, 3vw, 2.6rem)",
-                fontWeight: "700",
-                color: "var(--coffee-dark)",
-                marginBottom: "20px",
-                lineHeight: "1.25",
-              }}
-            >
-              Brewed with Passion <br /> Since 2018
-            </h2>
-            <p
-              style={{
-                color: "var(--text-muted)",
-                lineHeight: "1.8",
-                fontSize: "0.97rem",
-                marginBottom: "18px",
-              }}
-            >
-              Anagata Coffee started as a humble kiosk with one espresso machine and
-              an endless dream. Founded by Rina Kusuma — a barista champion and coffee
-              traveler — Anagata (meaning &quot;future&quot; in Sanskrit) was built to create
-              a space where every cup tells a story.
-            </p>
-            <p
-              style={{
-                color: "var(--text-muted)",
-                lineHeight: "1.8",
-                fontSize: "0.97rem",
-                marginBottom: "18px",
-              }}
-            >
-              Over the years, we&apos;ve grown into a beloved neighborhood café, welcoming
-              thousands of guests daily. But our core values have never changed: we
-              believe the best coffee is made with the best beans, the right technique,
-              and a genuine love for people.
-            </p>
-            <p
-              style={{
-                color: "var(--text-muted)",
-                lineHeight: "1.8",
-                fontSize: "0.97rem",
-              }}
-            >
-              Today, we source our beans from sustainable farms across three continents,
-              roast them in-house, and serve them in a carefully designed space that
-              feels like a second home. We&apos;re proud of where we&apos;ve been and excited
-              for where we&apos;re going.
-            </p>
-          </div>
-
-          <div style={{ position: "relative" }}>
-            <div
-              style={{
-                position: "relative",
-                borderRadius: "20px",
-                overflow: "hidden",
-                aspectRatio: "4/5",
-                boxShadow: "0 20px 60px rgba(74,44,10,0.2)",
-              }}
-            >
-              <Image
-                src="/coffee_hero.png"
-                alt="Our barista at work"
-                fill
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-            {/* Accent box */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: "-20px",
-                left: "-20px",
-                background: "linear-gradient(135deg, #c8882b, #e6a336)",
-                borderRadius: "14px",
-                padding: "24px 28px",
-                boxShadow: "0 8px 30px rgba(200,136,43,0.4)",
-              }}
-              className="animate-float"
-            >
-              <div
-                style={{
-                  fontFamily: "'Playfair Display', serif",
-                  fontSize: "2.2rem",
-                  fontWeight: "700",
-                  color: "white",
-                  lineHeight: "1",
-                }}
-              >
-                10K+
-              </div>
-              <div style={{ color: "rgba(255,255,255,0.85)", fontSize: "0.85rem", fontWeight: "500" }}>
-                Happy Customers
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <style>{`
-          @media (max-width: 768px) {
-            .story-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
-          }
-        `}</style>
-      </section>
-
-      {/* Values */}
-      <section
-        style={{
-          padding: "100px 24px",
-          background: "linear-gradient(135deg, #1a0e00, #2d1800)",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage: "url('/coffee_bean_pattern.png')",
-            backgroundSize: "280px",
-            opacity: 0.06,
-          }}
-        />
-        <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative" }}>
-          <div style={{ textAlign: "center", marginBottom: "60px" }}>
-            <span
-              style={{
-                fontFamily: "'Dancing Script', cursive",
-                fontSize: "1.4rem",
-                color: "#e6a336",
-                fontWeight: "600",
-                display: "block",
-                marginBottom: "8px",
-              }}
-            >
-              What Drives Us
-            </span>
-            <h2
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: "clamp(2rem, 3.5vw, 2.6rem)",
+                fontSize: "clamp(2.8rem, 5vw, 4.2rem)",
                 fontWeight: "700",
                 color: "white",
+                lineHeight: "1.15",
+                marginBottom: "20px",
               }}
             >
-              Our Core Values
-            </h2>
-          </div>
+              Tentang Kami
+              <br />
+              <span style={{ color: "#e6a336", fontStyle: "italic" }}>
+                Anagata Coffee
+              </span>
+            </h1>
 
+            <p
+              style={{
+                color: "rgba(255,255,255,0.7)",
+                fontSize: "1rem",
+                lineHeight: "1.8",
+                marginBottom: "36px",
+              }}
+            >
+              Pelajari perjalanan kami dalam menghadirkan pengalaman kopi modern yang
+              berkualitas dan berkesan bagi masyarakat di Desa Broto, Ponorogo.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== Introduction (Meaning) ===== */}
+      <section style={{ padding: "100px 24px 60px" }}>
+        <div style={{ maxWidth: "800px", margin: "0 auto", textAlign: "center" }}>
+          <h2
+            style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: "2.2rem",
+              color: "#1a0e00",
+              marginBottom: "30px",
+            }}
+          >
+            Makna di Balik <span style={{ color: "#c8882b" }}>Anagata</span>
+          </h2>
+          <p
+            style={{
+              fontSize: "1.15rem",
+              lineHeight: "1.9",
+              color: "#4a3c2c",
+              fontStyle: "italic",
+            }}
+          >
+            "Dalam bahasa Sansekerta, kata <strong>Anagata</strong> memiliki arti masa depan atau sesuatu yang belum terjadi namun penuh dengan harapan dan kemungkinan. Nama ini mencerminkan semangat kami untuk terus berkembang, berinovasi, dan memberikan pengalaman baru bagi masyarakat."
+          </p>
+        </div>
+      </section>
+
+      {/* ===== Dynamic Story Grid ===== */}
+      <section style={{ padding: "60px 24px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          {/* Part 1: Cultural Context */}
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: "24px",
+              gridTemplateColumns: "1.2fr 0.8fr",
+              gap: "80px",
+              alignItems: "center",
+              marginBottom: "120px",
             }}
-            className="values-grid"
+            className="about-row"
           >
-            {values.map((val) => (
-              <div
-                key={val.title}
+            <div>
+              <h3
                 style={{
-                  background: "rgba(255,255,255,0.05)",
-                  border: "1px solid rgba(200,136,43,0.2)",
-                  borderRadius: "16px",
-                  padding: "32px 24px",
-                  textAlign: "center",
-                  transition: "all 0.3s ease",
-                }}
-                onMouseOver={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "rgba(200,136,43,0.1)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(200,136,43,0.4)";
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
-                }}
-                onMouseOut={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.05)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(200,136,43,0.2)";
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                  fontFamily: "'Playfair Display', serif",
+                  fontSize: "1.8rem",
+                  color: "#1a0e00",
+                  marginBottom: "20px",
                 }}
               >
-                <div
-                  style={{
-                    fontSize: "40px",
-                    marginBottom: "16px",
-                    display: "block",
-                  }}
-                >
-                  {val.icon}
-                </div>
-                <h3
-                  style={{
-                    fontFamily: "'Playfair Display', serif",
-                    fontSize: "1.1rem",
-                    fontWeight: "600",
-                    color: "#e6a336",
-                    marginBottom: "10px",
-                  }}
-                >
-                  {val.title}
-                </h3>
-                <p
-                  style={{
-                    color: "rgba(255,255,255,0.6)",
-                    fontSize: "0.87rem",
-                    lineHeight: "1.7",
-                  }}
-                >
-                  {val.desc}
-                </p>
-              </div>
-            ))}
+                Gaya Hidup & Kopi
+              </h3>
+              <p style={{ color: "#555", lineHeight: "1.8", fontSize: "1rem" }}>
+                Perkembangan budaya minum kopi di Indonesia dalam beberapa tahun terakhir mengalami peningkatan yang pesat. Coffee shop tidak lagi hanya menjadi tempat menikmati kopi, tetapi juga menjadi ruang sosial untuk berkumpul, bekerja, berdiskusi, dan mengekspresikan gaya hidup modern.
+              </p>
+              <p style={{ color: "#555", lineHeight: "1.8", fontSize: "1rem", marginTop: "16px" }}>
+                Tren ini tidak hanya berkembang di kota besar, tetapi juga mulai merambah ke daerah dan desa, membawa angin segar bagi interaksi komunitas lokal.
+              </p>
+            </div>
+            <div style={{ position: "relative", height: "400px", borderRadius: "20px", overflow: "hidden", boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}>
+              <Image src="/1.jpg" alt="Budaya Kopi" fill style={{ objectFit: "cover" }} />
+            </div>
+          </div>
+
+          {/* Part 2: The Village Choice */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "0.8fr 1.2fr",
+              gap: "80px",
+              alignItems: "center",
+              marginBottom: "120px",
+            }}
+            className="about-row reversed"
+          >
+            <div style={{ position: "relative", height: "450px", borderRadius: "20px", overflow: "hidden", boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}>
+              <Image src="/2.jpg" alt="Anagata Coffee Village" fill style={{ objectFit: "cover" }} />
+            </div>
+            <div>
+              <h3
+                style={{
+                  fontFamily: "'Playfair Display', serif",
+                  fontSize: "1.8rem",
+                  color: "#1a0e00",
+                  marginBottom: "20px",
+                }}
+              >
+                Hadir di Desa Broto
+              </h3>
+              <p style={{ color: "#555", lineHeight: "1.8", fontSize: "1rem" }}>
+                Salah satu contohnya adalah Anagata Coffee, coffee shop yang berlokasi di Desa Broto, Kecamatan Slahung, Kabupaten Ponorogo. Meskipun berada di wilayah pedesaan, tempat ini hadir dengan konsep modern sehingga menjadi alternatif tempat berkumpul bagi masyarakat sekitar.
+              </p>
+              <p style={{ color: "#555", lineHeight: "1.8", fontSize: "1rem", marginTop: "16px" }}>
+                Kami percaya bahwa kualitas dan kenyamanan berstandar modern harus bisa dinikmati oleh siapa saja, di mana saja.
+              </p>
+            </div>
+          </div>
+
+          {/* Part 3: Design & Experience */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1.2fr 0.8fr",
+              gap: "80px",
+              alignItems: "center",
+            }}
+            className="about-row"
+          >
+            <div>
+              <h3
+                style={{
+                  fontFamily: "'Playfair Display', serif",
+                  fontSize: "1.8rem",
+                  color: "#1a0e00",
+                  marginBottom: "20px",
+                }}
+              >
+                Konsep & Kenyamanan
+              </h3>
+              <p style={{ color: "#555", lineHeight: "1.8", fontSize: "1rem" }}>
+                Anagata Coffee mengusung desain industrial minimalis dengan suasana yang nyaman dan estetik, sehingga pengunjung dapat bersantai, bekerja, maupun berkumpul bersama teman.
+              </p>
+              <p style={{ color: "#555", lineHeight: "1.8", fontSize: "1rem", marginTop: "16px" }}>
+                Selain berbagai menu kopi seperti americano dan cappuccino, kami juga menyediakan minuman lain serta makanan ringan yang dikurasi dengan baik untuk menyempurnakan hari Anda.
+              </p>
+            </div>
+            <div style={{ position: "relative", height: "400px", borderRadius: "20px", overflow: "hidden", boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}>
+              <Image src="/3.jpg" alt="Interior Anagata" fill style={{ objectFit: "cover" }} />
+            </div>
           </div>
         </div>
-
-        <style>{`
-          @media (max-width: 900px) {
-            .values-grid { grid-template-columns: repeat(2, 1fr) !important; }
-          }
-          @media (max-width: 480px) {
-            .values-grid { grid-template-columns: 1fr !important; }
-          }
-        `}</style>
       </section>
 
-      {/* Team */}
-      <section style={{ padding: "100px 24px", background: "var(--coffee-cream)" }}>
+      {/* ===== Visual Gallery ===== */}
+      <section style={{ padding: "100px 24px", background: "#1a0e00" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "60px" }}>
-            <span
-              style={{
-                fontFamily: "'Dancing Script', cursive",
-                fontSize: "1.4rem",
-                color: "#e6a336",
-                fontWeight: "600",
-                display: "block",
-                marginBottom: "8px",
-              }}
-            >
-              The People Behind the Cups
-            </span>
-            <h2
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: "clamp(2rem, 3.5vw, 2.6rem)",
-                fontWeight: "700",
-                color: "var(--coffee-dark)",
-              }}
-            >
-              Meet Our Team
-            </h2>
+            <span style={{ color: "#e6a336", fontFamily: "'Dancing Script', cursive", fontSize: "1.4rem" }}>Suasana Kami</span>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "2.6rem", color: "white", marginTop: "10px" }}>Galeri Visual</h2>
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: "28px",
-            }}
-            className="team-grid"
-          >
-            {team.map((member) => (
-              <div
-                key={member.name}
-                className="card-coffee"
-                style={{ textAlign: "center", padding: "36px 24px" }}
-              >
-                <div
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    background: "linear-gradient(135deg, #c8882b22, #e6a33644)",
-                    borderRadius: "50%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "36px",
-                    margin: "0 auto 16px",
-                    border: "3px solid rgba(200,136,43,0.25)",
-                  }}
-                >
-                  {member.emoji}
-                </div>
-                <h3
-                  style={{
-                    fontFamily: "'Playfair Display', serif",
-                    fontSize: "1.1rem",
-                    fontWeight: "600",
-                    color: "var(--coffee-dark)",
-                    marginBottom: "6px",
-                  }}
-                >
-                  {member.name}
-                </h3>
-                <p style={{ color: "#c8882b", fontSize: "0.85rem", fontWeight: "500" }}>
-                  {member.role}
-                </p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "20px" }} className="gallery-grid">
+            {[4, 5, 6, 7].map((num) => (
+              <div key={num} style={{ position: "relative", height: "300px", borderRadius: "12px", overflow: "hidden" }} className="gallery-item">
+                <Image src={`/${num}.jpg`} alt={`Suasana ${num}`} fill style={{ objectFit: "cover", transition: "transform 0.5s ease" }} className="hover-zoom" />
               </div>
             ))}
           </div>
         </div>
-
-        <style>{`
-          @media (max-width: 900px) {
-            .team-grid { grid-template-columns: repeat(2, 1fr) !important; }
-          }
-          @media (max-width: 480px) {
-            .team-grid { grid-template-columns: 1fr !important; }
-          }
-        `}</style>
       </section>
-    </>
+
+      {/* ===== Conclusion / Value ===== */}
+      <section style={{ padding: "100px 24px", textAlign: "center", background: "white" }}>
+        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "2rem", color: "#1a0e00", marginBottom: "30px" }}>
+            Mendukung Ekonomi Kreatif Lokal
+          </h2>
+          <p style={{ color: "#555", lineHeight: "1.8", fontSize: "1.1rem" }}>
+            Kehadiran Anagata Coffee menjadi bagian dari perkembangan usaha kreatif di daerah dan memberikan pengalaman baru bagi masyarakat yang sebelumnya lebih terbiasa dengan warung kopi tradisional. Dengan tempat yang nyaman, menu beragam, dan harga terjangkau, kami berharap dapat menjadi tempat berkumpul yang positif sekaligus mendukung perkembangan ekonomi kreatif di Ponorogo.
+          </p>
+          <div style={{ marginTop: "50px" }}>
+            <Link href="/" style={{
+              color: "#c8882b",
+              textDecoration: "none",
+              fontWeight: "600",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px"
+            }}>
+              Kembali ke Beranda <span>→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <style jsx>{`
+        .hover-zoom:hover {
+          transform: scale(1.1);
+        }
+        @media (max-width: 1024px) {
+          .about-row { 
+            grid-template-columns: 1fr !important; 
+            gap: 40px !important; 
+          }
+          .about-row div:nth-child(2) {
+            order: -1; /* Move image to top of text in all rows on mobile */
+          }
+          .about-row.reversed div:first-child {
+            order: -1;
+          }
+          .about-row h3 {
+            text-align: center;
+          }
+          .about-row p {
+            text-align: center;
+          }
+          .gallery-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        @media (max-width: 768px) {
+          section { padding: 60px 20px !important; }
+          .hero-text-container { justify-content: center !important; text-align: center !important; }
+          .hero-text-inner { max-width: 100% !important; text-align: center !important; }
+          .hero-deco-line { display: none !important; }
+          .hero-span { justify-content: center !important; }
+        }
+        @media (max-width: 480px) {
+          .gallery-grid { grid-template-columns: 1fr !important; }
+          h1 { fontSize: 2.8rem !important; }
+          h2 { fontSize: 1.8rem !important; }
+        }
+      `}</style>
+    </div>
   );
 }

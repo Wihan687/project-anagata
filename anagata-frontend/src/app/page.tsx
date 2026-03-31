@@ -2,43 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
-
-const featuredMenu = [
-  {
-    name: "Signature Espresso",
-    desc: "Bold, smooth single-origin espresso with a velvety crema",
-    price: "Rp 28.000",
-    icon: "☕",
-    badge: "Best Seller",
-  },
-  {
-    name: "Caramel Latte",
-    desc: "Creamy steamed milk with espresso and house caramel sauce",
-    price: "Rp 38.000",
-    icon: "🥛",
-    badge: "Favorite",
-  },
-  {
-    name: "Cold Brew Tonic",
-    desc: "Refreshing cold brew over tonic water with citrus zest",
-    price: "Rp 42.000",
-    icon: "🧊",
-    badge: "Trending",
-  },
-  {
-    name: "Matcha Latte",
-    desc: "Premium Japanese matcha blended with steamed oat milk",
-    price: "Rp 40.000",
-    icon: "🍵",
-    badge: "",
-  },
-];
+import ReservationSection from "@/components/ReservationSection";
 
 export default function HomePage() {
+
   return (
     <>
       {/* ===== Hero Section ===== */}
       <section
+        className="hero-section"
         style={{
           position: "relative",
           minHeight: "100vh",
@@ -48,50 +20,43 @@ export default function HomePage() {
           background: "#1a0e00",
         }}
       >
-        {/* Background image - left half */}
         <div
           style={{
             position: "absolute",
-            left: 0,
-            top: 0,
-            width: "52%",
-            height: "100%",
+            inset: 0,
             zIndex: 1,
           }}
         >
           <Image
-            src="/coffee_hero.png"
-            alt="Premium coffee being poured"
+            src="/bg.jpg"
+            alt="Anagata Coffee Desktop"
             fill
+            className="hero-bg-desktop"
             style={{ objectFit: "cover", objectPosition: "center" }}
             priority
+            unoptimized
+            quality={100}
           />
-          {/* Curved mask */}
+          <Image
+            src="/8.jpeg"
+            alt="Anagata Coffee Mobile"
+            fill
+            className="hero-bg-mobile"
+            style={{ objectFit: "cover", objectPosition: "center" }}
+            priority
+            unoptimized
+            quality={100}
+          />
+          {/* Dark overlay for readability */}
           <div
+            className="hero-overlay"
             style={{
               position: "absolute",
               inset: 0,
-              background:
-                "linear-gradient(to right, transparent 60%, #1a0e00 100%)",
+              background: "rgba(0, 0, 0, 0.5)",
             }}
           />
         </div>
-
-        {/* Bean pattern overlay */}
-        <div
-          style={{
-            position: "absolute",
-            right: 0,
-            top: 0,
-            width: "55%",
-            height: "100%",
-            backgroundImage: "url('/coffee_bean_pattern.png')",
-            backgroundSize: "280px",
-            backgroundRepeat: "repeat",
-            opacity: 0.08,
-            zIndex: 2,
-          }}
-        />
 
         {/* Content */}
         <div
@@ -113,7 +78,7 @@ export default function HomePage() {
           <div />
 
           {/* Right text */}
-          <div className="animate-fade-right">
+          <div className="animate-fade-right hero-text-container">
             <div
               style={{
                 display: "flex",
@@ -138,7 +103,7 @@ export default function HomePage() {
                   fontWeight: "600",
                 }}
               >
-                Welcome to our coffee
+                Selamat datang di kedai kami
               </span>
             </div>
 
@@ -152,10 +117,10 @@ export default function HomePage() {
                 marginBottom: "20px",
               }}
             >
-              Great Coffee
+              Kopi Nikmat
               <br />
               <span style={{ color: "#e6a336", fontStyle: "italic" }}>
-                for Some Joy
+                Penuh Inspirasi
               </span>
             </h1>
 
@@ -168,26 +133,23 @@ export default function HomePage() {
                 marginBottom: "36px",
               }}
             >
-              Discover handcrafted coffees made with premium single-origin
-              beans, brewed with passion and served with warmth in a cozy
-              atmosphere you&apos;ll love.
+              Temukan kopi pilihan yang dibuat dari biji kopi berkualitas, diseduh
+              dengan penuh semangat dan disajikan dengan kehangatan dalam
+              suasana nyaman yang akan Anda sukai.
             </p>
 
             <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-              <Link href="/menu" className="btn-primary">
-                Explore Menu
-              </Link>
               <Link
                 href="/about"
-                className="btn-outline"
-                style={{ borderColor: "rgba(255,255,255,0.4)", color: "white" }}
+                className="btn-primary"
               >
-                Our Story
+                Tentang Kami
               </Link>
             </div>
 
             {/* Stats */}
             <div
+              className="hero-stats-container"
               style={{
                 display: "flex",
                 gap: "40px",
@@ -197,9 +159,9 @@ export default function HomePage() {
               }}
             >
               {[
-                { num: "50+", label: "Menu Items" },
-                { num: "10K+", label: "Happy Customers" },
-                { num: "5★", label: "Rating" },
+                { num: "50+", label: "Pilihan Menu" },
+                { num: "10K+", label: "Pelanggan Puas" },
+                { num: "5★", label: "Penilaian" },
               ].map(({ num, label }) => (
                 <div key={label}>
                   <div
@@ -229,6 +191,7 @@ export default function HomePage() {
 
         {/* Scroll indicator */}
         <div
+          className="hero-scroll-container"
           style={{
             position: "absolute",
             bottom: "32px",
@@ -256,269 +219,126 @@ export default function HomePage() {
         </div>
 
         <style>{`
+          .hero-bg-mobile { display: none; }
           @media (max-width: 768px) {
+            .hero-section {
+              min-height: unset !important;
+              height: 100svh !important;
+            }
+            .hero-bg-desktop { display: none !important; }
+            .hero-bg-mobile { 
+              display: block !important; 
+              object-fit: contain !important;
+              background: #1a0e00;
+            }
+            .hero-overlay { display: none !important; }
+            .hero-text-container, .hero-stats-container, .hero-scroll-container { display: none !important; }
             .hero-grid { grid-template-columns: 1fr !important; }
           }
         `}</style>
       </section>
 
-      {/* ===== Featured Menu Section ===== */}
-      <section
-        style={{
-          padding: "100px 24px",
-          background: "var(--coffee-beige)",
-          position: "relative",
-        }}
-      >
-        {/* Background bean pattern */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage: "url('/coffee_bean_pattern.png')",
-            backgroundSize: "280px",
-            backgroundRepeat: "repeat",
-            opacity: 0.04,
-          }}
-        />
-        <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative" }}>
-          {/* Header */}
-          <div style={{ textAlign: "center", marginBottom: "60px" }}>
-            <span className="section-tag">Our Specialties</span>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "16px",
-                margin: "8px 0",
-              }}
-            >
-              <div style={{ width: "60px", height: "1px", background: "#c8882b", opacity: 0.5 }} />
-              <span style={{ color: "#c8882b", fontSize: "18px" }}>◆</span>
-              <div style={{ width: "60px", height: "1px", background: "#c8882b", opacity: 0.5 }} />
-            </div>
-            <h2 className="section-title">Popular Menu</h2>
-            <p className="section-subtitle" style={{ margin: "16px auto 0" }}>
-              Handcrafted with love using the finest beans from around the world.
-              Every sip tells a story.
-            </p>
-          </div>
-
-          {/* Cards */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: "24px",
-            }}
-            className="menu-grid"
-          >
-            {featuredMenu.map((item, i) => (
-              <div
-                key={item.name}
-                className="card-coffee"
-                style={{ animationDelay: `${i * 0.1}s` }}
-              >
-                {/* Icon area */}
-                <div
-                  style={{
-                    background: "linear-gradient(135deg, #4a2c0a22, #c8882b22)",
-                    height: "140px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "56px",
-                    position: "relative",
-                  }}
-                >
-                  {item.icon}
-                  {item.badge && (
-                    <span
-                      style={{
-                        position: "absolute",
-                        top: "12px",
-                        right: "12px",
-                        background: "linear-gradient(135deg, #c8882b, #e6a336)",
-                        color: "white",
-                        fontSize: "0.7rem",
-                        fontWeight: "700",
-                        padding: "3px 10px",
-                        borderRadius: "20px",
-                        letterSpacing: "0.05em",
-                      }}
-                    >
-                      {item.badge}
-                    </span>
-                  )}
-                </div>
-                <div style={{ padding: "20px" }}>
-                  <h3
-                    style={{
-                      fontFamily: "'Playfair Display', serif",
-                      fontSize: "1.1rem",
-                      fontWeight: "600",
-                      marginBottom: "8px",
-                      color: "var(--coffee-dark)",
-                    }}
-                  >
-                    {item.name}
-                  </h3>
-                  <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", lineHeight: "1.6", marginBottom: "16px" }}>
-                    {item.desc}
-                  </p>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontFamily: "'Playfair Display', serif",
-                        fontSize: "1.1rem",
-                        fontWeight: "700",
-                        color: "#c8882b",
-                      }}
-                    >
-                      {item.price}
-                    </span>
-                    <button
-                      style={{
-                        background: "linear-gradient(135deg, #c8882b, #e6a336)",
-                        border: "none",
-                        color: "white",
-                        width: "34px",
-                        height: "34px",
-                        borderRadius: "8px",
-                        cursor: "pointer",
-                        fontSize: "18px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        boxShadow: "0 3px 12px rgba(200,136,43,0.35)",
-                        transition: "all 0.2s ease",
-                      }}
-                      onMouseOver={(e) => {
-                        (e.currentTarget as HTMLElement).style.transform = "scale(1.1)";
-                      }}
-                      onMouseOut={(e) => {
-                        (e.currentTarget as HTMLElement).style.transform = "scale(1)";
-                      }}
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div style={{ textAlign: "center", marginTop: "48px" }}>
-            <Link href="/menu" className="btn-primary">
-              See Full Menu
-            </Link>
-          </div>
-        </div>
-
-        <style>{`
-          @media (max-width: 900px) {
-            .menu-grid { grid-template-columns: repeat(2, 1fr) !important; }
-          }
-          @media (max-width: 480px) {
-            .menu-grid { grid-template-columns: 1fr !important; }
-          }
-        `}</style>
-      </section>
 
       {/* ===== About Snippet ===== */}
       <section
+        className="about-snippet-section"
         style={{
-          padding: "100px 24px",
-          background: "linear-gradient(135deg, #1a0e00 0%, #2d1400 100%)",
+          padding: "100px 0",
+          background: "white",
           position: "relative",
           overflow: "hidden",
+          minHeight: "600px",
+          display: "flex",
+          alignItems: "center",
         }}
       >
+        {/* SVG Definition for Masking */}
+        <svg width="0" height="0" style={{ position: "absolute" }}>
+          <defs>
+            <clipPath id="about-wave" clipPathUnits="objectBoundingBox">
+              <path d="M0.30,0 C0.37,0.25 0.24,0.5 0.37,0.75 C0.44,0.9 0.50,1 0.50,1 L1,1 L1,0 Z" />
+            </clipPath>
+          </defs>
+        </svg>
+
+        {/* Clipped Right Side Content - Hidden on Mobile */}
+        <div
+          className="about-desktop-clipped"
+          style={{
+            position: "absolute",
+            inset: 0,
+            zIndex: 1,
+            clipPath: "url(#about-wave)",
+          }}
+        >
+          <Image
+            src="/about.jpg"
+            alt="Anagata Coffee Ambience"
+            fill
+            style={{ objectFit: "cover" }}
+            quality={100}
+            unoptimized
+          />
+          {/* Dark overlay for readability */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "rgba(26, 14, 0, 0.85)",
+            }}
+          />
+        </div>
+
+        {/* Wavy Divider - Borderless for minimalist look */}
         <div
           style={{
             position: "absolute",
             inset: 0,
-            backgroundImage: "url('/coffee_bean_pattern.png')",
-            backgroundSize: "300px",
-            opacity: 0.05,
+            zIndex: 2,
+            pointerEvents: "none",
           }}
         />
+
         <div
           style={{
             maxWidth: "1200px",
             margin: "0 auto",
+            padding: "0 24px",
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
             gap: "80px",
             alignItems: "center",
             position: "relative",
+            zIndex: 3,
+            width: "100%",
           }}
           className="about-grid"
         >
-          {/* Image */}
-          <div style={{ position: "relative" }}>
+          {/* Left: Image inside Card */}
+          <div className="about-image-container" style={{ display: "flex", justifyContent: "flex-start" }}>
             <div
               style={{
                 position: "relative",
-                borderRadius: "20px",
+                borderRadius: "24px",
                 overflow: "hidden",
-                aspectRatio: "4/5",
-                boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
+                width: "100%",
+                maxWidth: "440px",
+                aspectRatio: "1/1.2",
+                boxShadow: "0 20px 50px rgba(0,0,0,0.1)",
+                border: "8px solid white",
               }}
             >
               <Image
-                src="/coffee_about.png"
-                alt="Cozy coffee shop interior"
+                src="/about.jpg"
+                alt="Kedai Anagata Coffee"
                 fill
                 style={{ objectFit: "cover" }}
               />
             </div>
-            {/* Floating badge */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: "24px",
-                right: "-24px",
-                background: "linear-gradient(135deg, #c8882b, #e6a336)",
-                borderRadius: "16px",
-                padding: "20px 28px",
-                boxShadow: "0 8px 30px rgba(200,136,43,0.4)",
-                textAlign: "center",
-              }}
-              className="animate-float"
-            >
-              <div
-                style={{
-                  fontFamily: "'Dancing Script', cursive",
-                  fontSize: "2.2rem",
-                  fontWeight: "700",
-                  color: "white",
-                }}
-              >
-                Since
-              </div>
-              <div
-                style={{
-                  fontFamily: "'Playfair Display', serif",
-                  fontSize: "1.8rem",
-                  fontWeight: "700",
-                  color: "white",
-                }}
-              >
-                2018
-              </div>
-            </div>
           </div>
 
-          {/* Text */}
-          <div>
+          {/* Right: Text Content */}
+          <div className="animate-fade-right">
             <span
               style={{
                 fontFamily: "'Dancing Script', cursive",
@@ -529,7 +349,7 @@ export default function HomePage() {
                 marginBottom: "8px",
               }}
             >
-              Our Story
+              Latar Belakang
             </span>
             <h2
               style={{
@@ -541,204 +361,423 @@ export default function HomePage() {
                 marginBottom: "20px",
               }}
             >
-              Crafted with Passion,
-              <br />
-              Served with Heart
+              Anagata Coffee
             </h2>
             <p
               style={{
-                color: "rgba(255,255,255,0.65)",
+                color: "rgba(255,255,255,0.7)",
                 lineHeight: "1.8",
                 fontSize: "0.97rem",
                 marginBottom: "16px",
               }}
             >
-              Anagata Coffee was born from a deep love for coffee culture. We
-              source our beans carefully from farmers who share our values —
-              sustainable, ethical, and exceptional quality.
+              Perkembangan budaya minum kopi di Indonesia semakin meningkat dan
+              menjadikan coffee shop sebagai tempat untuk bersantai, berkumpul,
+              maupun bekerja. Hal ini juga mulai berkembang di daerah pedesaan.
             </p>
             <p
               style={{
-                color: "rgba(255,255,255,0.65)",
+                color: "rgba(255,255,255,0.7)",
                 lineHeight: "1.8",
                 fontSize: "0.97rem",
                 marginBottom: "36px",
               }}
             >
-              Every cup we serve is a result of careful craft: from the roast
-              profile to the pour technique, every detail is treated with
-              respect and dedication.
+              Anagata Coffee hadir sebagai salah satu coffee shop di Desa Broto,
+              Slahung, Ponorogo yang menawarkan konsep tempat yang modern dan
+              nyaman. Dengan berbagai pilihan menu kopi dan suasana yang menarik,
+              Anagata Coffee menjadi salah satu tempat berkumpul bagi masyarakat
+              serta turut mendukung perkembangan usaha kreatif di daerah.
             </p>
             <Link href="/about" className="btn-primary">
-              Learn More About Us
+              Pelajari Lebih Lanjut
             </Link>
           </div>
         </div>
 
         <style>{`
           @media (max-width: 768px) {
-            .about-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+            .about-snippet-section {
+              background: white !important;
+              position: relative;
+            }
+            .about-snippet-section::after {
+              display: none !important;
+            }
+            .about-grid { 
+              grid-template-columns: 1fr !important; 
+              gap: 40px !important; 
+              text-align: center;
+              position: relative;
+              z-index: 2;
+            }
+            .about-grid h2 { color: #1a0e00 !important; }
+            .about-grid p { color: rgba(26, 14, 0, 0.7) !important; }
+            .about-image-container { justify-content: center !important; }
+            .about-desktop-clipped { display: none !important; }
           }
         `}</style>
       </section>
 
-      {/* ===== Testimonials ===== */}
-      <section style={{ padding: "100px 24px", background: "var(--coffee-cream)" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: "60px" }}>
-            <span className="section-tag">What They Say</span>
-            <h2 className="section-title" style={{ marginTop: "8px" }}>
-              Customer Reviews
-            </h2>
-          </div>
+      {/* ===== Visit & Reserve Section ===== */}
+      <section
+        id="visit"
+        className="visit-section"
+        style={{
+          padding: "100px 0",
+          background: "white",
+          position: "relative",
+          overflow: "hidden",
+          marginTop: "-1px"
+        }}
+      >
+        <style>{`
+          .visit-bg-dark-mobile { display: none; }
+          .visit-mobile-pattern { display: none; }
+          @media (max-width: 1024px) {
+            .visit-grid { 
+              grid-template-columns: 1fr !important; 
+              gap: 40px !important;
+              padding: 0 20px !important;
+            }
+            .visit-section { padding: 0 0 60px 0 !important; }
+            .visit-container-inner { padding-top: 0px !important; margin-top: -20px !important; }
+            .visit-left-col {
+              transform: translateX(0) !important;
+              margin-bottom: 60px; /* Increased margin for more space */
+            }
+            .visit-right-col {
+              transform: translateX(0) !important;
+              padding-bottom: 80px;
+              margin-top: 60px !important;
+            }
+            .visit-bg-desktop {
+              display: none !important;
+            }
+            .visit-bg-dark-mobile {
+              display: block !important;
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 62%; /* Slightly reduced for a tighter fit */
+              background: linear-gradient(180deg, var(--coffee-dark) 0%, #1a0e00 100%);
+              z-index: 1;
+              border-bottom: 2px solid #e6a336;
+            }
+            .visit-mobile-pattern {
+              display: block !important;
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 62%;
+              background-image: url('/coffee_bean_pattern.png');
+              background-size: 200px;
+              opacity: 0.03;
+              z-index: 2;
+              pointer-events: none;
+            }
+            .mobile-wave-divider {
+              display: none !important; /* Kept hidden as per user request for flat look */
+            }
+            .decorative-photo-1 {
+              width: 110px !important;
+              height: 150px !important;
+              top: -30px !important;
+              right: 10px !important;
+              border-width: 4px !important;
+              border-radius: 20px !important;
+              display: block !important;
+              transform: rotate(3deg) !important;
+            }
+            .decorative-photo-2 {
+              width: 90px !important;
+              height: 90px !important;
+              bottom: 30px !important;
+              left: 10px !important;
+              border-width: 4px !important;
+              border-radius: 16px !important;
+              display: block !important;
+              transform: rotate(-4deg) !important;
+            }
+          }
+          @media (max-width: 600px) {
+            .visit-bg-dark-mobile, .visit-mobile-pattern { height: 60%; }
+            .visit-grid { gap: 32px !important; }
+            .decorative-photo-1 { width: 90px !important; height: 120px !important; top: -20px !important; }
+            .decorative-photo-2 { width: 75px !important; height: 75px !important; bottom: 40px !important; }
+          }
+        `}</style>
+
+        <svg width="0" height="0" style={{ position: "absolute" }}>
+          <defs>
+            <clipPath id="visit-wave-scurve" clipPathUnits="objectBoundingBox">
+              <path d="M0,0 L0.5,0 C0.58,0.25 0.42,0.75 0.5,1 L0,1 Z" />
+            </clipPath>
+          </defs>
+        </svg>
+
+        {/* Mobile Dark Background */}
+        <div className="visit-bg-dark-mobile" />
+        <div className="visit-mobile-pattern" />
+
+        {/* Mobile Wave Divider */}
+        <div className="mobile-wave-divider" style={{ display: "none" }}>
+          <svg width="100%" height="80" viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: "block" }}>
+            <path d="M0,0 Q360,80 720,40 T1440,80 L1440,80 L0,80 Z" fill="white" />
+          </svg>
+        </div>
+
+        {/* Desktop Designs (Hidden on Mobile via class) */}
+        <div className="visit-bg-desktop">
+          {/* Precise SVG Background for the dark left side */}
           <div
-            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "28px" }}
-            className="review-grid"
+            style={{
+              position: "absolute",
+              inset: 0,
+              zIndex: 1,
+              pointerEvents: "none"
+            }}
           >
-            {[
-              {
-                name: "Dinda Rahayu",
-                role: "Coffee Enthusiast",
-                text: "Anagata Coffee has the best espresso I've ever had in this city. The atmosphere is incredibly cozy and the staff are very welcoming!",
-                stars: 5,
-              },
-              {
-                name: "Budi Santoso",
-                role: "Regular Customer",
-                text: "I come here every morning before work. The caramel latte is perfection and the warm vibes keep me coming back every single day.",
-                stars: 5,
-              },
-              {
-                name: "Sari Wulandari",
-                role: "Food Blogger",
-                text: "Everything from the interior design to the cup presentation is Instagram-worthy. A definite must-visit for any coffee lover!",
-                stars: 5,
-              },
-            ].map(({ name, role, text, stars }) => (
-              <div
-                key={name}
-                className="card-coffee"
-                style={{ padding: "32px" }}
+            <svg
+              width="100%"
+              height="100%"
+              viewBox="0 0 100 600"
+              preserveAspectRatio="none"
+              style={{ display: "block" }}
+            >
+              <path
+                d="M0,0 L50,0 C58,150 42,450 50,600 L0,600 Z"
+                fill="var(--coffee-dark)"
+              />
+            </svg>
+          </div>
+
+          {/* Ambient Background Image for the dark side */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              zIndex: 1,
+              backgroundImage: "url('/6.jpg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: 0.3,
+              clipPath: "url(#visit-wave-scurve)",
+              pointerEvents: "none"
+            }}
+          />
+
+          {/* Coffee bean pattern over the dark side only */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundImage: "url('/coffee_bean_pattern.png')",
+              backgroundSize: "300px",
+              opacity: 0.04,
+              zIndex: 2,
+              clipPath: "url(#visit-wave-scurve)",
+            }}
+          />
+        </div>
+
+        <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 3, paddingTop: "80px" }}>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "80px",
+              alignItems: "start",
+              position: "relative"
+            }}
+            className="visit-grid"
+          >
+            {/* Left: Location & Maps */}
+            <div className="visit-left-col" style={{ transform: "translateX(-60px)" }}>
+              <span
+                style={{
+                  fontFamily: "'Dancing Script', cursive",
+                  fontSize: "1.4rem",
+                  color: "#e6a336",
+                  fontWeight: "600",
+                  display: "block",
+                  marginBottom: "8px",
+                }}
               >
-                <div style={{ display: "flex", gap: "4px", marginBottom: "16px" }}>
-                  {Array.from({ length: stars }).map((_, i) => (
-                    <span key={i} style={{ color: "#e6a336", fontSize: "16px" }}>★</span>
-                  ))}
-                </div>
-                <p
+                Kunjungi Kami
+              </span>
+              <h2
+                style={{
+                  fontFamily: "'Playfair Display', serif",
+                  fontSize: "clamp(2rem, 3.5vw, 2.6rem)",
+                  fontWeight: "700",
+                  color: "white",
+                  marginBottom: "24px",
+                }}
+              >
+                Lokasi Kedai
+              </h2>
+              {/* Map Embed with Photo Overlay */}
+              <div
+                className="map-premium-card"
+                style={{
+                  borderRadius: "32px",
+                  overflow: "hidden",
+                  boxShadow: "0 40px 100px rgba(0,0,0,0.5)",
+                  border: "1px solid rgba(255,255,255,0.12)",
+                  height: "440px",
+                  background: "#0c0700",
+                  position: "relative",
+                  transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
+                }}
+              >
+                {/* Background texture for depth when map is transparent */}
+                <div
                   style={{
-                    color: "var(--text-muted)",
-                    lineHeight: "1.75",
-                    fontSize: "0.92rem",
-                    marginBottom: "24px",
-                    fontStyle: "italic",
+                    position: "absolute",
+                    inset: 0,
+                    backgroundImage: "url('/bg.jpg')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    opacity: 0.2,
+                    filter: "blur(10px)",
+                  }}
+                />
+
+                {/* The Map */}
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.773789497087!2d111.41079657572374!3d-8.022246092004197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e79731b597f464d%3A0x3c22fc5ada9f5c98!2sAnagata%20Coffee!5e0!3m2!1sid!2sid!4v1773097277232!5m2!1sid!2sid"
+                  width="100%"
+                  height="100%"
+                  style={{
+                    border: 0,
+                    opacity: 1,
+                    filter: "contrast(1.1) saturate(1.2) brightness(0.9)",
+                    position: "relative",
+                    zIndex: 2,
+                    mixBlendMode: "normal" // Removed screen blend for better visibility with high opacity
+                  }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+
+                {/* Subtle Inner Glow/Vignette */}
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    boxShadow: "inset 0 0 100px rgba(0,0,0,0.6)",
+                    pointerEvents: "none",
+                    zIndex: 3
+                  }}
+                />
+
+                {/* Floating Photo Card (Atmosphere Preview) - Repositioned and refined */}
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: "24px",
+                    left: "24px",
+                    width: "150px",
+                    background: "rgba(25, 14, 0, 0.75)",
+                    backdropFilter: "blur(15px)",
+                    borderRadius: "20px",
+                    padding: "8px",
+                    border: "1px solid rgba(255,255,255,0.15)",
+                    boxShadow: "0 15px 30px rgba(0,0,0,0.4)",
+                    zIndex: 10,
+                    transition: "all 0.3s ease",
+                    cursor: "pointer"
+                  }}
+                  className="atmosphere-card"
+                  onMouseOver={(e) => {
+                    (e.currentTarget as HTMLElement).style.transform = "translateY(-8px) scale(1.02)";
+                    (e.currentTarget as HTMLElement).style.background = "rgba(25, 14, 0, 0.9)";
+                  }}
+                  onMouseOut={(e) => {
+                    (e.currentTarget as HTMLElement).style.transform = "translateY(0) scale(1)";
+                    (e.currentTarget as HTMLElement).style.background = "rgba(25, 14, 0, 0.75)";
                   }}
                 >
-                  &quot;{text}&quot;
-                </p>
-                <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
                   <div
                     style={{
-                      width: "44px",
-                      height: "44px",
-                      borderRadius: "50%",
-                      background: "linear-gradient(135deg, #c8882b, #e6a336)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "white",
-                      fontWeight: "700",
-                      fontSize: "1rem",
+                      width: "100%",
+                      height: "100px",
+                      borderRadius: "14px",
+                      overflow: "hidden",
+                      marginBottom: "8px",
+                      position: "relative"
                     }}
                   >
-                    {name[0]}
+                    <img
+                      src="/1.jpg"
+                      alt="Suasana Anagata Coffee"
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    />
+                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.5), transparent)" }} />
                   </div>
-                  <div>
-                    <div style={{ fontWeight: "600", color: "var(--coffee-dark)", fontSize: "0.95rem" }}>{name}</div>
-                    <div style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>{role}</div>
+                  <div style={{ padding: "0 4px" }}>
+                    <span style={{ color: "#e6a336", fontSize: "0.75rem", fontWeight: "700", display: "block", marginBottom: "2px" }}>
+                      Menu & Suasana
+                    </span>
+                    <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.65rem" }}>
+                      Klik untuk melihat →
+                    </span>
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
 
-        <style>{`
-          @media (max-width: 768px) {
-            .review-grid { grid-template-columns: 1fr !important; }
-          }
-        `}</style>
-      </section>
-
-      {/* ===== CTA Section ===== */}
-      <section
-        style={{
-          padding: "80px 24px",
-          background: "linear-gradient(135deg, #c8882b 0%, #e6a336 50%, #c8882b 100%)",
-          textAlign: "center",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage: "url('/coffee_bean_pattern.png')",
-            backgroundSize: "250px",
-            opacity: 0.1,
-          }}
-        />
-        <div style={{ position: "relative", maxWidth: "700px", margin: "0 auto" }}>
-          <h2
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
-              fontWeight: "700",
-              color: "white",
-              marginBottom: "16px",
-            }}
-          >
-            Ready for Your Next Cup?
-          </h2>
-          <p style={{ color: "rgba(255,255,255,0.85)", fontSize: "1rem", marginBottom: "36px", lineHeight: "1.7" }}>
-            Visit us today or explore our full menu online. Great coffee is just a click away.
-          </p>
-          <div style={{ display: "flex", justifyContent: "center", gap: "16px", flexWrap: "wrap" }}>
-            <Link
-              href="/menu"
+            {/* Right: Info & CTA */}
+            <div
+              className="visit-right-col"
               style={{
-                background: "white",
-                color: "#c8882b",
-                padding: "14px 36px",
-                borderRadius: "4px",
-                textDecoration: "none",
-                fontWeight: "700",
-                fontSize: "0.95rem",
-                letterSpacing: "0.05em",
-                transition: "all 0.3s ease",
-                boxShadow: "0 4px 20px rgba(0,0,0,0.15)",
+                position: "relative",
+                zIndex: 4,
+                transform: "translate(40px, 100px)", // Geser ke kanan (positif) agar tepat di tengah area putih
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                textAlign: "center",
+                gap: "16px",
+                padding: "20px"
               }}
             >
-              View Menu
-            </Link>
-            <Link
-              href="/contact"
-              style={{
-                background: "transparent",
-                color: "white",
-                padding: "13px 34px",
-                borderRadius: "4px",
-                textDecoration: "none",
-                fontWeight: "600",
-                fontSize: "0.95rem",
-                letterSpacing: "0.05em",
-                border: "2px solid rgba(255,255,255,0.6)",
-                transition: "all 0.3s ease",
-              }}
-            >
-              Find Us
-            </Link>
+              <span
+                style={{
+                  fontFamily: "'Dancing Script', cursive",
+                  fontSize: "1.6rem",
+                  color: "#e6a336",
+                  fontWeight: "600",
+                  display: "block",
+                }}
+              >
+                Select Your Time Of Visit
+              </span>
+
+              <div style={{ width: "40px", height: "2px", background: "rgba(200, 136, 43, 0.4)", borderRadius: "2px", marginBottom: "8px" }} />
+
+              <p style={{
+                color: "rgba(26, 14, 0, 0.7)",
+                fontSize: "1.05rem",
+                lineHeight: "1.8",
+                marginBottom: "24px",
+                maxWidth: "480px",
+                fontWeight: "400"
+              }}>
+                Kami menghargai waktu Anda. Daftarkan pesanan Anda terlebih dahulu untuk penyajian yang lebih presisi dan konsisten, terutama saat jam sibuk.
+              </p>
+
+              <div style={{ display: "flex", width: "100%", maxWidth: "300px" }}>
+                <Link href="/reserve" className="btn-primary" style={{ flex: 1, textAlign: "center", textDecoration: "none" }}>
+                  Pesan Slot Sekarang
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>

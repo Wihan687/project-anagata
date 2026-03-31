@@ -12,7 +12,66 @@
   --coffee-light: #fff8f0;
   --text-dark: #1a0e00;
   --text-muted: #6b5b4e;
+
+  /* Admin Theme Variables (Light) */
+  --admin-bg: #f5f6f8;
+  --admin-sidebar: white;
+  --admin-card: white;
+  --admin-border: #eaeaea;
+  --admin-text: #1a0e00;
+  --admin-text-muted: #666;
+  --admin-accent: #c8882b;
+  --admin-accent-glow: #1a0e00;
+  --admin-accent-bg: #fff8f0;
+  --admin-hover: #f9f9f9;
+  --admin-table-header: #fbfbfb;
+  --admin-table-border: #f0f0f0;
+  --admin-table-hover: #fffcf8;
+  --admin-card-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  --admin-badge-pending-bg: #fff3cd;
+  --admin-badge-pending-text: #856404;
+  --admin-badge-pending-border: 1px solid transparent;
+  --admin-badge-confirmed-bg: #d4edda;
+  --admin-badge-confirmed-text: #155724;
+  --admin-badge-confirmed-border: 1px solid transparent;
+  --admin-badge-cancelled-bg: #f8d7da;
+  --admin-badge-cancelled-text: #721c24;
+  --admin-badge-cancelled-border: 1px solid transparent;
+  --admin-badge-completed-bg: #e2e3e5;
+  --admin-badge-completed-text: #383d41;
+  --admin-badge-completed-border: 1px solid transparent;
 }
+
+[data-theme='dark'] {
+  /* Admin Theme Variables (Dark) */
+  --admin-bg: #140a00;
+  --admin-sidebar: #0a0500;
+  --admin-card: #1f1104;
+  --admin-border: #2a1a08;
+  --admin-text: #f0e6d2;
+  --admin-text-muted: rgba(255, 255, 255, 0.7);
+  --admin-accent: #c8882b;
+  --admin-accent-glow: #e6a336;
+  --admin-accent-bg: rgba(200, 136, 43, 0.1);
+  --admin-hover: rgba(255, 255, 255, 0.03);
+  --admin-table-header: #2a1a08;
+  --admin-table-border: #3a2208;
+  --admin-table-hover: rgba(200, 136, 43, 0.05);
+  --admin-card-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  --admin-badge-pending-bg: rgba(200, 136, 43, 0.2);
+  --admin-badge-pending-text: #e6a336;
+  --admin-badge-pending-border: 1px solid rgba(200, 136, 43, 0.3);
+  --admin-badge-confirmed-bg: rgba(37, 211, 102, 0.15);
+  --admin-badge-confirmed-text: #4df086;
+  --admin-badge-confirmed-border: 1px solid transparent;
+  --admin-badge-cancelled-bg: rgba(220, 53, 69, 0.15);
+  --admin-badge-cancelled-text: #ff7b8a;
+  --admin-badge-cancelled-border: 1px solid transparent;
+  --admin-badge-completed-bg: rgba(255, 255, 255, 0.1);
+  --admin-badge-completed-text: #b0bfc6;
+  --admin-badge-completed-border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 
 * {
   margin: 0;

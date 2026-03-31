@@ -1,0 +1,11 @@
+{
+  "name": "anagata-project-root",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix anagata-frontend run dev",
+    "build": "npm --prefix anagata-frontend run build",
+    "start": "npm --prefix anagata-frontend run start",
+    "lint": "npm --prefix anagata-frontend run lint"
+  }
+}

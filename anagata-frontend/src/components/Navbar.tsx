@@ -6,9 +6,8 @@ import { useState, useEffect } from "react";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/menu", label: "Menu" },
   { href: "/about", label: "About Us" },
-  { href: "/contact", label: "Contact" },
+  { href: "/reserve", label: "Reservasi" },
 ];
 
 export default function Navbar() {
@@ -21,6 +20,8 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  if (pathname.startsWith("/admin")) return null;
 
   return (
     <header
@@ -39,6 +40,7 @@ export default function Navbar() {
       }}
     >
       <nav
+        className="nav-container"
         style={{
           maxWidth: "1200px",
           margin: "0 auto",
@@ -50,26 +52,32 @@ export default function Navbar() {
         }}
       >
         {/* Logo */}
-        <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px" }}>
+        <Link href="/admin" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px" }}>
           <div
             style={{
               width: "42px",
               height: "42px",
-              background: "linear-gradient(135deg, #c8882b, #e6a336)",
+              position: "relative",
               borderRadius: "10px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "20px",
+              overflow: "hidden",
               boxShadow: "0 4px 12px rgba(200,136,43,0.4)",
             }}
           >
-            ☕
+            <img
+              src="/logo-anagata.png"
+              alt="Anagata Coffee Logo"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
           </div>
           <span
+            className="nav-logo-text"
             style={{
-              fontFamily: "'Dancing Script', cursive",
-              fontSize: "1.6rem",
+                fontFamily: "'Playfair Display', serif",
+              fontSize: "2.2rem",
               fontWeight: "700",
               color: "white",
               letterSpacing: "0.02em",
@@ -126,11 +134,6 @@ export default function Navbar() {
               </Link>
             </li>
           ))}
-          <li>
-            <Link href="/menu" className="btn-primary" style={{ padding: "10px 24px", fontSize: "0.9rem" }}>
-              Order Now
-            </Link>
-          </li>
         </ul>
 
         {/* Mobile hamburger */}
@@ -162,6 +165,7 @@ export default function Navbar() {
             borderTop: "1px solid rgba(200,136,43,0.2)",
           }}
         >
+
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -186,8 +190,10 @@ export default function Navbar() {
 
       <style>{`
         @media (max-width: 768px) {
+          .nav-container { padding: 0 40px !important; }
           .nav-desktop { display: none !important; }
           .nav-hamburger { display: flex !important; }
+          .nav-logo-text { display: none !important; }
         }
       `}</style>
     </header>

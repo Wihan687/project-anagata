@@ -1,0 +1,62 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Reservation {
+  id           String   @id @default(cuid())
+  customerName String
+  whatsapp     String
+  pax          Int      @default(1)
+  date         String   // Format: YYYY-MM-DD
+  timeSlot     String   // Format: HH:mm
+  status       String   @default("PENDING") // PENDING, CONFIRMED, CANCELLED
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Menu {
+  id        String       @id @default(cuid())
+  name      String
+  category  String
+  price     Int
+  variants  Json?        // Stores array of { name: "Hot", price: 18000 }
+  image     String?
+  isAvailable Boolean    @default(true)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  orderItems OrderItem[]
+}
+
+model StoreSettings {
+  id                String   @id @default("GLOBAL")
+  isEmergencyClosed Boolean  @default(false)
+  operatingHours    Json     // Store schedule configuration
+  updatedAt         DateTime @updatedAt
+}
+
+model Order {
+  id             String      @id @default(cuid())
+  customerName   String?     // Optional, e.g. "Table 4" or "John"
+  totalAmount    Int
+  paymentMethod  String      @default("CASH") // CASH, QRIS, TRANSFER
+  status         String      @default("COMPLETED")
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+  items          OrderItem[]
+}
+
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  menuId    String
+  menu      Menu     @relation(fields: [menuId], references: [id])
+  variant   String?  // Records selected variant (e.g. "Ice")
+  quantity  Int
+  price     Int      // Recorded at the time of purchase
+}
